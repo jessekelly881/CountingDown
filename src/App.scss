@@ -1,0 +1,21 @@
+.create-counter-form{
+    margin: 40px 120px 40px 120px;
+}
+
+#timer{
+    text-align: center;
+
+}
+
+.timer-part{
+    margin: 15px;
+    flex-wrap: wrap;
+    display: inline-block;
+    text-align: center;
+}
+
+.timer-val{
+    font-size: 80px;
+    font-weight: bold;
+    display:block;
+}
