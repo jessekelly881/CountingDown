@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { BrowserRouter as Router, Route, Link, Radio, Checkbox } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Radio} from "react-router-dom";
 import 'antd/dist/antd.css';
 import "./App.scss"
 
@@ -40,7 +40,17 @@ function Counter(props){
     const [dt, setTimeDiff] = useState(props.startTime - new Date().getTime())
 
     const timer = setInterval( () => {
-      setTimeDiff(props.startTime - new Date().getTime())
+      const currentTime = new Date().getTime();
+      const diff = props.startTime - currentTime;
+
+      if(diff > 0){
+        setTimeDiff(diff)
+      }
+
+      else{
+        setTimeDiff(0)
+      }
+
     }, 1000)
 
     return (
