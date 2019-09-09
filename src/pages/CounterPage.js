@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Spin } from 'antd';
+import { Link } from "react-router-dom";
 
 function calcDiff(timeA, timeB){
 
@@ -50,6 +51,10 @@ function Counter(props){
     )
 }
 
+const CounterFooter = () => (
+    <p className="counter-footer">Created using Counting Down. Create your own timer <Link to="/">here</Link></p>
+)
+
 const CounterPage = (props) => {
     const { id } = props.match.params;
     const db = props.db;
@@ -70,6 +75,7 @@ const CounterPage = (props) => {
                   </div>
 
                   <Counter time={data.timestamp.toDate().getTime()}/>
+                  <CounterFooter />
                 </>
         )
     }
@@ -78,6 +84,7 @@ const CounterPage = (props) => {
         return (
           <>
            <Spin tip="Fetching Timer..."/>
+           <CounterFooter />
           </>
         )
     }
