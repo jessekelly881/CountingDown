@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Spin } from 'antd';
 
 function calcDiff(timeA, timeB){
 
@@ -53,27 +54,32 @@ const CounterPage = (props) => {
     const { id } = props.match.params;
     const db = props.db;
 
-    const [data, setData] = useState({loading: false});
+    const [data, setData] = useState({loading: true});
 
     db.collection('counters').doc(id).get().then( (doc) => {
         const d = doc.data()
-        setData({
-            name: d.name,
-            timestamp: d.timestamp.toDate()
-        })
+        setData(d);
     })
 
-    if(data.timestamp){
+    if(! data.loading){
         return (
                 <>
-                {name}
-                <Counter time={data.timestamp.getTime()}/>
+                  <div className="timer-header">
+                    <h2 className="timer-name">{data.name}</h2>
+                    <p className="timer-description">{data.description}</p>
+                  </div>
+
+                  <Counter time={data.timestamp.toDate().getTime()}/>
                 </>
         )
     }
 
     else{
-        return <> </>
+        return (
+          <>
+           <Spin tip="Fetching Timer..."/>
+          </>
+        )
     }
 }
 

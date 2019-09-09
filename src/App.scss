@@ -1,7 +1,3 @@
-body{
-    color: #222;
-}
-
 .create-counter-form{
     margin: 40px 120px 40px 120px;
 }
@@ -22,4 +18,17 @@ body{
     font-size: 80px;
     font-weight: bold;
     display:block;
+}
+
+.timer-header{
+    margin: 15px;
+}
+
+.timer-name{
+    font-size: 30px;
+    color: #222;
+}
+
+.timer-description{
+    color: #444;
 }
