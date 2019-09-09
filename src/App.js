@@ -21,27 +21,36 @@ var firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-function postCounterToFirebase(data){
+function postCounterToFirebase(data, setCounterLink){
 
     db.collection('counters').add(data).then( (ref) => {
-      alert(ref.id)
+        setCounterLink("/" + ref.id);
     })
 
 }
 
 function CreateCounterForm(props) {
+    const { getFieldDecorator, getFieldValue } = props.form;
+    const [counterLink, setCounterLink] = useState("");
+    const [formData, setFormData] = useState({});
 
     function handleCreateCounterForm(e) {
         e.preventDefault();
 
         props.form.validateFields((err, values) => {
             if (!err) {
-                postCounterToFirebase({name: "Posted"});
+                const timestamp = new Date (getFieldValue("timestamp"))
+                const data = {
+                    name: getFieldValue("name"),
+                    description: getFieldValue("description"),
+                    timestamp: firebase.firestore.Timestamp.fromDate(timestamp)
+                }
+
+                postCounterToFirebase(data, setCounterLink);
             }
         });
     }
 
-    const { getFieldDecorator } = props.form;
 
     return (
       <Form onSubmit={handleCreateCounterForm} className="create-counter-form">
@@ -70,7 +79,7 @@ function CreateCounterForm(props) {
 
         <Form.Item>
         {
-            getFieldDecorator('date_time', {
+            getFieldDecorator('timestamp', {
             rules: [{ required: true, message: 'Please enter a date and time' }],
             })
 
@@ -81,6 +90,8 @@ function CreateCounterForm(props) {
         <Form.Item>
         <Button block htmlType="submit">Create Timer</Button> <br />
         </Form.Item>
+
+        <Link to={counterLink}>{counterLink}</Link>
 
       </Form>
     )
