@@ -1,13 +1,31 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-
+import * as firebase from 'firebase';
 import { DatePicker, TimePicker, Button, Input, Form} from 'antd';
 const { TextArea } = Input;
-
 import 'antd/dist/antd.css';
-
 import "./App.scss"
 
+var firebaseConfig = {
+    apiKey: "AIzaSyCLDVjnklu6TJ8fUJCA5CzEgIB_TtX79Gg",
+    authDomain: "countingdown-36a9b.firebaseapp.com",
+    databaseURL: "https://countingdown-36a9b.firebaseio.com",
+    projectId: "countingdown-36a9b",
+    storageBucket: "countingdown-36a9b.appspot.com",
+    messagingSenderId: "166860362051",
+    appId: "1:166860362051:web:30d8c28628f465b918dff6"
+  };
+
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function postCounterToFirebase(data){
+
+    db.collection('counters').add(data).then( (ref) => {
+      alert(ref.id)
+    })
+
+}
 
 function CreateCounterForm(props) {
 
@@ -16,7 +34,7 @@ function CreateCounterForm(props) {
 
         props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                postCounterToFirebase({name: "Posted"});
             }
         });
     }
@@ -96,7 +114,7 @@ function Counter(props){
     }, 1000)
 
     return (
-      <p id="timer">
+      <div id="timer">
 
         <div className="timer-part" id="timer-days">
           <div className="timer-val">{Math.floor(dt / (1000 * 60 * 60 * 24))}</div>
@@ -118,7 +136,7 @@ function Counter(props){
           <small className="timer-label">Seconds</small>
         </div>
 
-      </p>
+      </div>
     )
 }
 
