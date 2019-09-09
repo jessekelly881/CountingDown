@@ -1,30 +1,23 @@
 import React, {useState} from "react";
-import { BrowserRouter as Router, Route, Link, Radio} from "react-router-dom";
-import 'antd/dist/antd.css';
-import "./App.scss"
+import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 
-import {DatePicker, TimePicker, Button, Form} from 'antd';
+import { DatePicker, TimePicker, Button, Input} from 'antd';
+const { TextArea } = Input;
+
+import 'antd/dist/antd.css';
+
+import "./App.scss"
 
 function CreateCounterForm() {
 
     return (
-        <Form className="create-counter-form">
-          <h2>Create Counter</h2>
+        <>
+        <Input placeholder="Countdown Name" />
+        <TextArea rows={4} placeholder="Description" />
+        <DatePicker /> <TimePicker /> <br />
 
-          <Form.Item label="Day">
-            <DatePicker />
-          </Form.Item>
-
-          <Form.Item label="Time">
-            <TimePicker />
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary">
-              Create Timer
-            </Button>
-          </Form.Item>
-        </Form>
+        <Button block>Create Timer</Button> <br />
+        </>
     )
 }
 
