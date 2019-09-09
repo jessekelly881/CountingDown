@@ -5,6 +5,7 @@ import { DatePicker, TimePicker, Button, Input, Form} from 'antd';
 const { TextArea } = Input;
 import 'antd/dist/antd.css';
 import "./App.scss"
+import siteData from './data.yaml'
 
 import { CounterPage } from "./pages/CounterPage.js"
 
@@ -27,6 +28,20 @@ function postCounterToFirebase(data, setCounterLink){
         setCounterLink("/" + ref.id);
     })
 
+}
+
+const LinkBox = ({to}) => {
+    if(to === ""){
+        return(
+            <> </>
+        )
+    }
+
+    else{
+        return (
+           <Link to={to}>{siteData.url + to}</Link>
+        )
+    }
 }
 
 function CreateCounterForm(props) {
@@ -83,7 +98,7 @@ function CreateCounterForm(props) {
             rules: [{ required: true, message: 'Please enter a date and time' }],
             })
 
-            (<DatePicker showTime format="YYYY-MM-DD HH:mm:ss" placeholder="Select date and time" />)
+            (<DatePicker showTime={{ use12Hours: true }} format="YYYY-MM-DD h:mm:ss A" placeholder="Select date and time" />)
         }
         </Form.Item>
 
@@ -91,7 +106,7 @@ function CreateCounterForm(props) {
         <Button block htmlType="submit">Create Timer</Button> <br />
         </Form.Item>
 
-        <Link to={counterLink}>{counterLink}</Link>
+        <LinkBox to={counterLink} />
 
       </Form>
     )
