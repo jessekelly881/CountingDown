@@ -84,7 +84,6 @@ const CounterPage = (props) => {
         return (
           <>
            <Spin tip="Fetching Timer..."/>
-           <CounterFooter />
           </>
         )
     }
