@@ -6,7 +6,6 @@ const { TextArea } = Input;
 import 'antd/dist/antd.css';
 import "./App.scss"
 import siteData from './data.yaml'
-import marked from 'marked';
 
 import description from "./description.md"
 
@@ -120,12 +119,22 @@ function MarkdownComponent({md}) {
   return <div dangerouslySetInnerHTML={hash()} />
 }
 
+function IndexHeader(){
+    return(
+        <>
+          <h1>{siteData.title}</h1>
+          <h2>{siteData.subtitle}</h2>
+        </>
+    )
+}
+
 function IndexPage() {
     const WrappedCreateCounterForm = Form.create({ name: 'create_counter' })(CreateCounterForm);
 
     return (
       <>
         <div className="create-counter">
+          <IndexHeader />
           <WrappedCreateCounterForm />
           <MarkdownComponent md={description} />
         </div>
