@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-import * as firebase from 'firebase';
-import { DatePicker, TimePicker, Button, Input, Form} from 'antd';
+import { DatePicker, Button, Input, Form} from 'antd';
 const { TextArea } = Input;
 import 'antd/dist/antd.css';
 import "./App.scss"
 import siteData from './data.yaml'
+
+// Firebase
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 import description from "./description.md"
 
