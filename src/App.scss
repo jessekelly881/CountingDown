@@ -45,13 +45,13 @@ h1, h2, h3 {
 /* Large Screens */
 @media only screen and (min-width: 750px){
     body{
-        padding: 10px 20vw 40px 20vw;
+        padding: 10vh 20vw 15vh 20vw;
     }
 }
 
 /* Small Screens */
 @media only screen and (max-width: 750px){
     body{
-        padding: 10px 5vw 10px 5vw;
+        padding: 10vh 5vw 15vh 5vw;
     }
 }
