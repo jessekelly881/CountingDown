@@ -15,11 +15,11 @@ import 'antd/es/form/style/css';
 
 const { TextArea } = Input;
 
-import "./App.scss"
-import siteData from './data.yaml'
+import "./App.scss";
+import siteData from './data.yaml';
 
 // Firebase
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import description from "./description.md"
