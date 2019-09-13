@@ -1,8 +1,20 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-import { DatePicker, Button, Input, Form} from 'antd';
+
+import DatePicker from 'antd/es/date-picker';
+import 'antd/es/date-picker/style/css';
+
+import Button from 'antd/es/button';
+import 'antd/es/button/style/css';
+
+import Input from 'antd/es/input';
+import 'antd/es/input/style/css';
+
+import Form from 'antd/es/form';
+import 'antd/es/form/style/css';
+
 const { TextArea } = Input;
-import 'antd/dist/antd.css';
+
 import "./App.scss"
 import siteData from './data.yaml'
 

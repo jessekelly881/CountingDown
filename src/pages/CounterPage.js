@@ -1,5 +1,8 @@
 import React, {useState} from "react";
-import { Spin } from 'antd';
+
+import Spin from 'antd/es/spin';
+import 'antd/es/spin/style/css';
+
 import { Link } from "react-router-dom";
 
 function calcDiff(timeA, timeB){
